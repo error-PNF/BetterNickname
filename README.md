@@ -1,5 +1,5 @@
 # BetterNickName
-A Hypixel Mod to improve the /nick system for MVP++ players.
+A Forge 1.8.9 Hypixel Mod to improve the /nick system for MVP++ players.
 
 ### Warning:
 This mod and its features are use at your own risk. It is to be used at the user's discretion with full knowledge that it may not be allowed.
