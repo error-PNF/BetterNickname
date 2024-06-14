@@ -39,6 +39,16 @@ public class BetterNickConfig extends Config {
     )
     public static String matchText =  "";
 
+    @Text(
+            name = "Reroll If Nickname Contains: ",
+            description = "Rerolls the nickname if a nickname with the\ntext you input is found.\n (Case sensitive, skips if any character in the exclude text is found in the nickname)",
+            category = "Auto-Reroll",
+            subcategory = "Auto-Reroll Settings",
+            placeholder = "Enter the characters you want to exclude in the nickname. Ex: _123Xx",
+            size = 2
+    )
+    public static String excludeText =  ""; // _1234567890 is an example exclusion list to not allow _ or numbers
+
     @KeyBind(
             name = "Toggle Auto-Reroll",
             description = "Toggles the Auto-Reroll on and off when pressed.",
