@@ -29,26 +29,27 @@ public class AutoReroll {
             if (isAutoRerollEnabled()) {
                 if (IsInLobby.isInLobby()) {
                     if (!hasClaimedName && BookParser.getGeneratedNickname() != null && !BookParser.getGeneratedNickname().equals(claimedName)) {
-
                         if (!BetterNickConfig.matchText.isEmpty() && BookParser.getGeneratedNickname().contains(BetterNickConfig.matchText)) {
-                            if (BetterNickConfig.autoClaimName) {
-                                Minecraft.getMinecraft().thePlayer.sendChatMessage("/nick actuallyset " + BookParser.getGeneratedNickname());
-                                UChat.chat("&e[BetterNick] &aAuto-Reroll match found! Claiming name...");
-                                UChat.chat("&e[BetterNick] Your nickname has been set to: &b" + BookParser.getGeneratedNickname());
-                                BetterNickCommand.setCancelBookGui(true);
-                                toggleAutoReroll();
-                                hasSentIsInLobby = false;
-                                Minecraft.getMinecraft().thePlayer.playSound("random.levelup", 1f, 2f);
-                                claimedName = BookParser.getGeneratedNickname();
-                                hasClaimedName = true;
-                            } else {
-                                UChat.chat("&e[BetterNick] &aAuto-Reroll match found!");
-                                UChat.chat("&e[BetterNick] Run &b/betternick claimname &eto claim the name!");
-                                toggleAutoReroll();
-                                hasSentIsInLobby = false;
-                                Minecraft.getMinecraft().thePlayer.playSound("random.levelup", 1f, 2f);
-                                claimedName = BookParser.getGeneratedNickname();
-                                hasClaimedName = true;
+                            if (BetterNickConfig.excludeText.isEmpty() || !BookParser.getGeneratedNickname().matches(String.format(".*[%s].*", BetterNickConfig.excludeText))) { // Checks if any chars in nick
+                                if (BetterNickConfig.autoClaimName) {
+                                    Minecraft.getMinecraft().thePlayer.sendChatMessage("/nick actuallyset " + BookParser.getGeneratedNickname());
+                                    UChat.chat("&e[BetterNick] &aAuto-Reroll match found! Claiming name...");
+                                    UChat.chat("&e[BetterNick] Your nickname has been set to: &b" + BookParser.getGeneratedNickname());
+                                    BetterNickCommand.setCancelBookGui(true);
+                                    toggleAutoReroll();
+                                    hasSentIsInLobby = false;
+                                    Minecraft.getMinecraft().thePlayer.playSound("random.levelup", 1f, 2f);
+                                    claimedName = BookParser.getGeneratedNickname();
+                                    hasClaimedName = true;
+                                } else {
+                                    UChat.chat("&e[BetterNick] &aAuto-Reroll match found!");
+                                    UChat.chat("&e[BetterNick] Run &b/betternick claimname &eto claim the name!");
+                                    toggleAutoReroll();
+                                    hasSentIsInLobby = false;
+                                    Minecraft.getMinecraft().thePlayer.playSound("random.levelup", 1f, 2f);
+                                    claimedName = BookParser.getGeneratedNickname();
+                                    hasClaimedName = true;
+                                }
                             }
                         }
                     }
